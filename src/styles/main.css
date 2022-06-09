@@ -1,0 +1,41 @@
+:root {
+  --main-bg: #f9f7ec;
+  --main-bg-dark: #edebdd;
+  --main-color: #383838;
+  --font-sans: 'Fira Sans', sans-serif;
+}
+
+html,
+body {
+  font-family: var(--font-sans);
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  background-color: var(--main-bg);
+  min-height: 100vh;
+}
+
+.container header {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 1rem;
+  background-color: var(--main-bg-dark);
+  color: var(--main-color);
+  font-size: 2.25rem;
+  font-weight: 700;
+  height: 10rem;
+  width: 42rem;
+}
