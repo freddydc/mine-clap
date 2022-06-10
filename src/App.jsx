@@ -1,7 +1,8 @@
-function App() {
+function App(props) {
   return (
     <div className="container">
-      <header>Welcome</header>
+      <header>{props.message}</header>
+      {props.children}
     </div>
   )
 }
