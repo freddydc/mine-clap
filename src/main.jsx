@@ -5,8 +5,6 @@ import './styles/main.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App message="Welcome">
-      <h1>Greetings</h1>
-    </App>
+    <App />
   </StrictMode>
 )

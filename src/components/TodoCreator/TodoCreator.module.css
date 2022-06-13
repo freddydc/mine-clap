@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.container svg {
+  height: 24px;
+  width: 24px;
+  color: #fff;
+}
+
+.container button {
+  display: flex;
+  background-color: #1eaedb;
+  border-radius: 9999px;
+  padding: 0.5rem;
+  cursor: pointer;
+  border: 0;
+}

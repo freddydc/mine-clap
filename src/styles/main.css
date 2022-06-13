@@ -21,21 +21,9 @@ a {
   text-decoration: none;
 }
 
-.container {
+#root {
   display: flex;
   justify-content: center;
   background-color: var(--main-bg);
   min-height: 100vh;
-}
-
-.container header {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 1rem;
-  background-color: var(--main-bg-dark);
-  color: var(--main-color);
-  font-size: 2.25rem;
-  font-weight: 700;
-  height: 10rem;
-  width: 42rem;
 }
