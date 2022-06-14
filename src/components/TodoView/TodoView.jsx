@@ -1,11 +1,19 @@
 import styles from './TodoView.module.css'
 
 export const TodoView = ({ completed, text }) => {
+  const deleteTodo = () => {
+    alert(`[ Deleted ] ${text}`)
+  }
+
+  const completeTodo = () => {
+    alert(`[ Completed ] ${text}`)
+  }
+
   return (
     <li>
       <div className={`${styles.container} ${completed && styles.completed}`}>
         <span>
-          <button>
+          <button onClick={completeTodo}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
@@ -21,7 +29,7 @@ export const TodoView = ({ completed, text }) => {
         </span>
         <p>{text}</p>
         <span>
-          <button>
+          <button onClick={deleteTodo}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"

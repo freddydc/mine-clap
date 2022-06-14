@@ -1,9 +1,13 @@
 import styles from './TodoCreator.module.css'
 
 export const TodoCreator = () => {
+  const createTodo = msg => {
+    alert(msg)
+  }
+
   return (
     <div className={styles.container}>
-      <button>
+      <button onClick={() => createTodo('Add Todo')}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
