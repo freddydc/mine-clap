@@ -1,13 +1,13 @@
 import styles from './TodoCounter.module.css'
 
-export const TodoCounter = () => {
+export const TodoCounter = ({ total, completed }) => {
   return (
     <div className={styles.container}>
       <h1>
-        Completed: <span>2</span>
+        Completed: <span>{completed}</span>
       </h1>
       <h1>
-        Total: <span>5</span>
+        Total: <span>{total}</span>
       </h1>
     </div>
   )

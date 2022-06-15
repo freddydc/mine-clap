@@ -1,14 +1,6 @@
 import styles from './TodoView.module.css'
 
-export const TodoView = ({ completed, text }) => {
-  const deleteTodo = () => {
-    alert(`[ Deleted ] ${text}`)
-  }
-
-  const completeTodo = () => {
-    alert(`[ Completed ] ${text}`)
-  }
-
+export const TodoView = ({ completed, text, completeTodo, deleteTodo }) => {
   return (
     <li>
       <div className={`${styles.container} ${completed && styles.completed}`}>

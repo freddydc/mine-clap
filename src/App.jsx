@@ -7,7 +7,7 @@ import { TodoCreator } from './components/TodoCreator'
 
 import styles from './styles/Home.module.css'
 
-const todoList = [
+const staticTodoList = [
   {
     text: 'FUZZ',
     completed: false,
@@ -21,7 +21,26 @@ const todoList = [
 ]
 
 function App() {
+  const [todoList, setTodoList] = useState(staticTodoList)
   const [searchTerm, setSearchTerm] = useState('')
+
+  const completedTodo = todoList.filter(todo => !!todo.completed).length
+  const totalTodo = todoList.length
+
+  const consumeTodo = id => {
+    const todoIndex = todoList.findIndex(todo => todo.id === id)
+    const newTodo = [...todoList]
+    const todo = newTodo[todoIndex]
+    todo.completed = !todo.completed
+    setTodoList(newTodo)
+  }
+
+  const removeTodo = id => {
+    const todoIndex = todoList.findIndex(todo => todo.id === id)
+    const newTodo = [...todoList]
+    newTodo.splice(todoIndex, 1)
+    setTodoList(newTodo)
+  }
 
   let filteredTodo = []
 
@@ -35,7 +54,7 @@ function App() {
 
   return (
     <div className={styles.container}>
-      <TodoCounter />
+      <TodoCounter total={totalTodo} completed={completedTodo} />
       <TodoSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <TodoList>
         {filteredTodo.length > 0
@@ -44,6 +63,8 @@ function App() {
                 key={item.id}
                 text={item.text}
                 completed={item.completed}
+                completeTodo={() => consumeTodo(item.id)}
+                deleteTodo={() => removeTodo(item.id)}
               />
             ))
           : todoList.map(item => (
@@ -51,6 +72,8 @@ function App() {
                 key={item.id}
                 text={item.text}
                 completed={item.completed}
+                completeTodo={() => consumeTodo(item.id)}
+                deleteTodo={() => removeTodo(item.id)}
               />
             ))}
       </TodoList>
