@@ -1,9 +1,6 @@
-import { useState } from 'react'
 import styles from './TodoSearch.module.css'
 
-export const TodoSearch = () => {
-  const [searchTerm, setSearchTerm] = useState('')
-
+export const TodoSearch = ({ searchTerm, setSearchTerm }) => {
   const handleSubmit = e => {
     e.preventDefault()
   }
@@ -13,8 +10,8 @@ export const TodoSearch = () => {
     setSearchTerm(e.target.value)
   }
 
-  return [
-    <div key="2-4" className={styles.container}>
+  return (
+    <div className={styles.container}>
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Claps..."
@@ -22,7 +19,6 @@ export const TodoSearch = () => {
           onChange={searchValue}
         />
       </form>
-    </div>,
-    <p key="8-3">{searchTerm}</p>
-  ]
+    </div>
+  )
 }
