@@ -1,6 +1,6 @@
 # Mine Clap
 
-This project contains `React` course
+This project contains the basics of `React`
 
 ## Getting Started
 
