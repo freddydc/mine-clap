@@ -1,9 +1,5 @@
 import { useState } from 'react'
-import { TodoCounter } from './components/TodoCounter'
-import { TodoSearch } from './components/TodoSearch'
-import { TodoList } from './components/TodoList'
-import { TodoView } from './components/TodoView'
-import { TodoCreator } from './components/TodoCreator'
+import { Layout } from './components/Layout'
 
 import styles from './styles/Home.module.css'
 
@@ -54,30 +50,16 @@ function App() {
 
   return (
     <div className={styles.container}>
-      <TodoCounter total={totalTodo} completed={completedTodo} />
-      <TodoSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <TodoList>
-        {filteredTodo.length > 0
-          ? filteredTodo.map(item => (
-              <TodoView
-                key={item.id}
-                text={item.text}
-                completed={item.completed}
-                completeTodo={() => consumeTodo(item.id)}
-                deleteTodo={() => removeTodo(item.id)}
-              />
-            ))
-          : todoList.map(item => (
-              <TodoView
-                key={item.id}
-                text={item.text}
-                completed={item.completed}
-                completeTodo={() => consumeTodo(item.id)}
-                deleteTodo={() => removeTodo(item.id)}
-              />
-            ))}
-      </TodoList>
-      <TodoCreator />
+      <Layout
+        totalTodo={totalTodo}
+        completedTodo={completedTodo}
+        searchTerm={searchTerm}
+        todoList={todoList}
+        filteredTodo={filteredTodo}
+        setSearchTerm={setSearchTerm}
+        consumeTodo={consumeTodo}
+        removeTodo={removeTodo}
+      />
     </div>
   )
 }
