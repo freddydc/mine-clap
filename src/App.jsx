@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Layout } from './components/Layout'
+import { useLocalStorage } from './hooks/useLocalStorage'
 
 import styles from './styles/Home.module.css'
 
@@ -17,28 +18,11 @@ const staticTodoList = [
 ]
 
 function App() {
-  const todoListStorage = localStorage.getItem('TODO_LIST')
-
-  const todoListParse = JSON.parse(todoListStorage)
-
-  let todoListStored = staticTodoList
-
-  if (!todoListParse || todoListParse.length === 0) {
-    localStorage.setItem('TODO_LIST', JSON.stringify(staticTodoList))
-  } else {
-    todoListStored = todoListParse
-  }
-
-  const [todoList, setTodoList] = useState(todoListStored)
+  const [todoList, setTodoList] = useLocalStorage('TODO_LIST', staticTodoList)
   const [searchTerm, setSearchTerm] = useState('')
 
   const completedTodo = todoList.filter(todo => !!todo.completed).length
   const totalTodo = todoList.length
-
-  const storeTodoList = todoList => {
-    const chainTodoList = JSON.stringify(todoList)
-    localStorage.setItem('TODO_LIST', chainTodoList)
-  }
 
   const consumeTodo = id => {
     const todoIndex = todoList.findIndex(todo => todo.id === id)
@@ -46,7 +30,6 @@ function App() {
     const todo = newTodo[todoIndex]
     todo.completed = !todo.completed
     setTodoList(newTodo)
-    storeTodoList(newTodo)
   }
 
   const removeTodo = id => {
@@ -54,7 +37,6 @@ function App() {
     const newTodo = [...todoList]
     newTodo.splice(todoIndex, 1)
     setTodoList(newTodo)
-    storeTodoList(newTodo)
   }
 
   let filteredTodo = []
