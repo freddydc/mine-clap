@@ -1,6 +1,10 @@
+import { useContext } from 'react'
+import { TodoContext } from '../context'
 import styles from './TodoSearch.module.css'
 
-export const TodoSearch = ({ searchTerm, setSearchTerm }) => {
+export const TodoSearch = () => {
+  const { searchTerm, setSearchTerm } = useContext(TodoContext)
+
   const handleSubmit = e => {
     e.preventDefault()
   }
