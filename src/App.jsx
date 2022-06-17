@@ -18,7 +18,11 @@ const staticTodoList = [
 ]
 
 function App() {
-  const [todoList, setTodoList] = useLocalStorage('TODO_LIST', staticTodoList)
+  const {
+    data: todoList,
+    setData: setTodoList,
+    loading
+  } = useLocalStorage('TODO_LIST', staticTodoList)
   const [searchTerm, setSearchTerm] = useState('')
 
   const completedTodo = todoList.filter(todo => !!todo.completed).length
@@ -60,6 +64,7 @@ function App() {
         setSearchTerm={setSearchTerm}
         consumeTodo={consumeTodo}
         removeTodo={removeTodo}
+        loading={loading}
       />
     </div>
   )
