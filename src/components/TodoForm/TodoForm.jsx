@@ -1,9 +1,10 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { TodoContext } from '../context'
 import styles from './TodoForm.module.css'
 
 export const TodoForm = () => {
-  const { setShowModal } = useContext(TodoContext)
+  const { setShowModal, addTodo } = useContext(TodoContext)
+  const [message, setMessage] = useState('')
 
   const handleCancel = () => {
     setShowModal(previousValue => !previousValue)
@@ -11,6 +12,14 @@ export const TodoForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
+    if (message) {
+      addTodo(message)
+      setShowModal(previousValue => !previousValue)
+    }
+  }
+
+  const handleEntry = e => {
+    setMessage(e.target.value)
   }
 
   return (
@@ -18,7 +27,11 @@ export const TodoForm = () => {
       <h1>Add Todo</h1>
       <div>
         <form onSubmit={handleSubmit}>
-          <input placeholder="Custom todo..." />
+          <input
+            placeholder="Custom todo..."
+            onChange={handleEntry}
+            value={message}
+          />
           <div>
             <button type="button" onClick={handleCancel}>
               Cancel

@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react'
 import { useLocalStorage } from '../hooks/useLocalStorage'
+import { v4 as uuidV4 } from 'uuid'
 
 const staticTodoList = [
   {
@@ -44,6 +45,16 @@ export function TodoProvider({ children }) {
     setTodoList(newTodo)
   }
 
+  const addTodo = msg => {
+    const newTodo = [...todoList]
+    newTodo.push({
+      id: uuidV4(),
+      completed: false,
+      text: msg
+    })
+    setTodoList(newTodo)
+  }
+
   let filteredTodo = []
 
   if (searchTerm.length > 0) {
@@ -65,7 +76,8 @@ export function TodoProvider({ children }) {
     removeTodo,
     loading,
     showModal,
-    setShowModal
+    setShowModal,
+    addTodo
   }
 
   return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>
