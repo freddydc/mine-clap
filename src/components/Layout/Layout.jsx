@@ -5,10 +5,18 @@ import { TodoView } from '../TodoView'
 import { TodoCreator } from '../TodoCreator'
 import { TodoContext } from '../context'
 import { useContext } from 'react'
+import { Modal } from '../Modal'
+import { TodoForm } from '../TodoForm'
 
 export const Layout = () => {
-  const { todoList, filteredTodo, consumeTodo, removeTodo, loading } =
-    useContext(TodoContext)
+  const {
+    todoList,
+    filteredTodo,
+    consumeTodo,
+    removeTodo,
+    loading,
+    showModal
+  } = useContext(TodoContext)
 
   return (
     <>
@@ -39,6 +47,11 @@ export const Layout = () => {
           ))
         )}
       </TodoList>
+      {!!showModal && (
+        <Modal>
+          <TodoForm />
+        </Modal>
+      )}
       <TodoCreator />
     </>
   )

@@ -24,6 +24,8 @@ export function TodoProvider({ children }) {
   } = useLocalStorage('TODO_LIST', staticTodoList)
   const [searchTerm, setSearchTerm] = useState('')
 
+  const [showModal, setShowModal] = useState(false)
+
   const completedTodo = todoList.filter(todo => !!todo.completed).length
   const totalTodo = todoList.length
 
@@ -61,7 +63,9 @@ export function TodoProvider({ children }) {
     setSearchTerm,
     consumeTodo,
     removeTodo,
-    loading
+    loading,
+    showModal,
+    setShowModal
   }
 
   return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>

@@ -1,0 +1,10 @@
+.container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(249 247 236 / 0.6);
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+}

@@ -1,13 +1,17 @@
+import { useContext } from 'react'
+import { TodoContext } from '../context'
 import styles from './TodoCreator.module.css'
 
 export const TodoCreator = () => {
-  const createTodo = msg => {
-    alert(msg)
+  const { showModal, setShowModal } = useContext(TodoContext)
+
+  const createTodo = () => {
+    setShowModal(previousValue => !previousValue)
   }
 
   return (
-    <div className={styles.container}>
-      <button onClick={() => createTodo('Add Todo')}>
+    <div className={`${styles.container} ${showModal && styles.close}`}>
+      <button onClick={createTodo}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

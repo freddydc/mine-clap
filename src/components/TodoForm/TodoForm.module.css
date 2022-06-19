@@ -1,0 +1,61 @@
+.container {
+  --shadow: 0 0 0 1px #a8973859;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--main-bg-dark);
+  border-radius: 0.25rem;
+  padding: 2.5rem 1rem;
+  margin: 3.75rem 1rem;
+  box-shadow: var(--shadow);
+  height: 100%;
+  width: 42rem;
+}
+
+.container div {
+  display: flex;
+  justify-content: center;
+}
+
+.container button {
+  font-size: 1rem;
+  font-weight: 700;
+  min-width: 5rem;
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #a72145;
+  border-radius: 9999px;
+  cursor: pointer;
+  color: #fff;
+  border: 0;
+}
+
+.container h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #76838a;
+  margin: 0;
+}
+
+.container input,
+.container input:focus {
+  --shadow: 0 2px 3px #a8973859;
+  border: 0;
+  outline: 0;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  color: var(--main-color);
+  border-radius: 0.25rem;
+  background-color: #fff;
+  box-shadow: var(--shadow);
+  font-size: 1.5rem;
+  font-weight: 500;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container form {
+    width: 32rem;
+  }
+}
