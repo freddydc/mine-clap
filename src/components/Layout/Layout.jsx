@@ -7,6 +7,7 @@ import { TodoContext } from '../context'
 import { useContext } from 'react'
 import { Modal } from '../Modal'
 import { TodoForm } from '../TodoForm'
+import { Skeleton } from '../Skeleton'
 
 export const Layout = () => {
   const {
@@ -24,7 +25,11 @@ export const Layout = () => {
       <TodoSearch />
       <TodoList>
         {loading ? (
-          <p>Loading todo...</p>
+          <>
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+          </>
         ) : filteredTodo.length > 0 ? (
           filteredTodo.map(item => (
             <TodoView

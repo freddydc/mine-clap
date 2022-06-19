@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin: 0.75rem 0;
+}
+
+.container span {
+  height: 1rem;
+  width: 1rem;
+  margin: 0 0.75rem;
+  border-radius: 9999px;
+}
+
+.container div {
+  flex-grow: 1;
+  border-radius: 9999px;
+  height: 0.75rem;
+}
+
+.container span,
+.container div {
+  background-color: #76838a;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
