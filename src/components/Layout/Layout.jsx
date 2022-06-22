@@ -16,13 +16,19 @@ export const Layout = () => {
     consumeTodo,
     removeTodo,
     loading,
-    showModal
+    showModal,
+    addTodo,
+    searchTerm,
+    completedTodo,
+    totalTodo,
+    setShowModal,
+    setSearchTerm
   } = useContext(TodoContext)
 
   return (
     <>
-      <TodoCounter />
-      <TodoSearch />
+      <TodoCounter completed={completedTodo} total={totalTodo} />
+      <TodoSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <TodoList>
         {loading ? (
           <>
@@ -54,10 +60,10 @@ export const Layout = () => {
       </TodoList>
       {!!showModal && (
         <Modal>
-          <TodoForm />
+          <TodoForm setShowModal={setShowModal} addTodo={addTodo} />
         </Modal>
       )}
-      <TodoCreator />
+      <TodoCreator showModal={showModal} setShowModal={setShowModal} />
     </>
   )
 }

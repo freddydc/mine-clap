@@ -1,10 +1,6 @@
-import { useContext } from 'react'
-import { TodoContext } from '../context'
 import styles from './TodoCreator.module.css'
 
-export const TodoCreator = () => {
-  const { showModal, setShowModal } = useContext(TodoContext)
-
+export const TodoCreator = ({ showModal, setShowModal }) => {
   const createTodo = () => {
     setShowModal(previousValue => !previousValue)
   }

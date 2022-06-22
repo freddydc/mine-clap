@@ -1,9 +1,7 @@
-import { useContext, useState } from 'react'
-import { TodoContext } from '../context'
+import { useState } from 'react'
 import styles from './TodoForm.module.css'
 
-export const TodoForm = () => {
-  const { setShowModal, addTodo } = useContext(TodoContext)
+export const TodoForm = ({ setShowModal, addTodo }) => {
   const [message, setMessage] = useState('')
 
   const handleCancel = () => {
