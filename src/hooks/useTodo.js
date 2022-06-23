@@ -17,7 +17,7 @@ const staticTodoList = [
 
 export function useTodo() {
   const {
-    data: todoList,
+    data: todoData,
     setData: setTodoList,
     loading
   } = useLocalStorage('TODO_LIST', staticTodoList)
@@ -25,26 +25,26 @@ export function useTodo() {
 
   const [showModal, setShowModal] = useState(false)
 
-  const completedTodo = todoList.filter(todo => !!todo.completed).length
-  const totalTodo = todoList.length
+  const completedTodo = todoData.filter(todo => !!todo.completed).length
+  const totalTodo = todoData.length
 
   const consumeTodo = id => {
-    const todoIndex = todoList.findIndex(todo => todo.id === id)
-    const newTodo = [...todoList]
+    const todoIndex = todoData.findIndex(todo => todo.id === id)
+    const newTodo = [...todoData]
     const todo = newTodo[todoIndex]
     todo.completed = !todo.completed
     setTodoList(newTodo)
   }
 
   const removeTodo = id => {
-    const todoIndex = todoList.findIndex(todo => todo.id === id)
-    const newTodo = [...todoList]
+    const todoIndex = todoData.findIndex(todo => todo.id === id)
+    const newTodo = [...todoData]
     newTodo.splice(todoIndex, 1)
     setTodoList(newTodo)
   }
 
   const addTodo = msg => {
-    const newTodo = [...todoList]
+    const newTodo = [...todoData]
     newTodo.push({
       id: uuidV4(),
       completed: false,
@@ -53,10 +53,10 @@ export function useTodo() {
     setTodoList(newTodo)
   }
 
-  let filteredTodo = []
+  let todoList = todoData
 
   if (searchTerm.length > 0) {
-    filteredTodo = todoList.filter(todo => {
+    todoList = todoData.filter(todo => {
       const text = todo.text.toLowerCase()
       const searchText = searchTerm.toLowerCase()
       return text.includes(searchText)
@@ -68,7 +68,6 @@ export function useTodo() {
     completedTodo,
     searchTerm,
     todoList,
-    filteredTodo,
     setSearchTerm,
     consumeTodo,
     removeTodo,

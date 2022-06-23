@@ -12,7 +12,6 @@ import { useTodo } from './hooks/useTodo'
 function App() {
   const {
     todoList,
-    filteredTodo,
     consumeTodo,
     removeTodo,
     loading,
@@ -36,16 +35,6 @@ function App() {
             <Skeleton />
             <Skeleton />
           </>
-        ) : filteredTodo.length > 0 ? (
-          filteredTodo.map(item => (
-            <TodoView
-              key={item.id}
-              text={item.text}
-              completed={item.completed}
-              completeTodo={() => consumeTodo(item.id)}
-              deleteTodo={() => removeTodo(item.id)}
-            />
-          ))
         ) : (
           todoList.map(item => (
             <TodoView
