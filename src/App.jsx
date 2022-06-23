@@ -28,25 +28,26 @@ function App() {
     <Layout>
       <TodoCounter completed={completedTodo} total={totalTodo} />
       <TodoSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <TodoList>
-        {loading ? (
+      <TodoList
+        loading={loading}
+        todoList={todoList}
+        skeleton={() => (
           <>
             <Skeleton />
             <Skeleton />
             <Skeleton />
           </>
-        ) : (
-          todoList.map(item => (
-            <TodoView
-              key={item.id}
-              text={item.text}
-              completed={item.completed}
-              completeTodo={() => consumeTodo(item.id)}
-              deleteTodo={() => removeTodo(item.id)}
-            />
-          ))
         )}
-      </TodoList>
+        todoView={todo => (
+          <TodoView
+            key={todo.id}
+            text={todo.text}
+            completed={todo.completed}
+            completeTodo={() => consumeTodo(todo.id)}
+            deleteTodo={() => removeTodo(todo.id)}
+          />
+        )}
+      />
       {!!showModal && (
         <Modal>
           <TodoForm setShowModal={setShowModal} addTodo={addTodo} />
