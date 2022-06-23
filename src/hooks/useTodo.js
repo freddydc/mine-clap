@@ -1,5 +1,5 @@
-import { createContext, useState } from 'react'
-import { useLocalStorage } from '../hooks/useLocalStorage'
+import { useState } from 'react'
+import { useLocalStorage } from './useLocalStorage'
 import { v4 as uuidV4 } from 'uuid'
 
 const staticTodoList = [
@@ -15,9 +15,7 @@ const staticTodoList = [
   }
 ]
 
-export const TodoContext = createContext({})
-
-export function TodoProvider({ children }) {
+export function useTodo() {
   const {
     data: todoList,
     setData: setTodoList,
@@ -65,7 +63,7 @@ export function TodoProvider({ children }) {
     })
   }
 
-  const value = {
+  return {
     totalTodo,
     completedTodo,
     searchTerm,
@@ -79,6 +77,4 @@ export function TodoProvider({ children }) {
     setShowModal,
     addTodo
   }
-
-  return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>
 }
