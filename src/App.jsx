@@ -42,7 +42,9 @@ function App() {
             <Skeleton />
           </>
         )}
-        todoView={todo => (
+        todoView={null}
+      >
+        {todo => (
           <TodoView
             key={todo.id}
             text={todo.text}
@@ -51,7 +53,7 @@ function App() {
             deleteTodo={() => removeTodo(todo.id)}
           />
         )}
-      />
+      </TodoList>
       {!!showModal && (
         <Modal>
           <TodoForm setShowModal={setShowModal} addTodo={addTodo} />

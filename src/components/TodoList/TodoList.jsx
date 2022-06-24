@@ -7,7 +7,8 @@ export const TodoList = ({
   todoView,
   message,
   totalTodo,
-  searchText
+  searchText,
+  children
 }) => {
   return (
     <div className={styles.container}>
@@ -21,7 +22,7 @@ export const TodoList = ({
           todoList.length === 0 &&
           message(`Not found todo ${searchText}`)}
 
-        {!loading && todoList.map(todoView)}
+        {!loading && todoList.map(todoView ?? children)}
       </ul>
     </div>
   )
