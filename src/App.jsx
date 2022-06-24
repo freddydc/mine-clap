@@ -8,6 +8,7 @@ import { TodoForm } from './components/TodoForm'
 import { Skeleton } from './components/Skeleton'
 import { Layout } from './components/Layout'
 import { useTodo } from './hooks/useTodo'
+import { Message } from './components/Message'
 
 function App() {
   const {
@@ -31,6 +32,9 @@ function App() {
       <TodoList
         loading={loading}
         todoList={todoList}
+        totalTodo={totalTodo}
+        searchText={searchTerm}
+        message={text => <Message message={text} />}
         skeleton={() => (
           <>
             <Skeleton />
