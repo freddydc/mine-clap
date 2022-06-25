@@ -1,6 +1,6 @@
 import styles from './TodoSearch.module.css'
 
-export const TodoSearch = ({ searchTerm, setSearchTerm }) => {
+export const TodoSearch = ({ searchTerm, setSearchTerm, loading }) => {
   const handleSubmit = e => {
     e.preventDefault()
   }
@@ -11,12 +11,13 @@ export const TodoSearch = ({ searchTerm, setSearchTerm }) => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${loading && styles.entryLock}`}>
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Claps..."
           value={searchTerm}
           onChange={searchValue}
+          disabled={loading}
         />
       </form>
     </div>

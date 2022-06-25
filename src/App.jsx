@@ -9,6 +9,7 @@ import { Skeleton } from './components/Skeleton'
 import { Layout } from './components/Layout'
 import { useTodo } from './hooks/useTodo'
 import { Message } from './components/Message'
+import { TodoHeader } from './components/TodoHeader'
 
 function App() {
   const {
@@ -27,8 +28,10 @@ function App() {
 
   return (
     <Layout>
-      <TodoCounter completed={completedTodo} total={totalTodo} />
-      <TodoSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <TodoHeader loading={loading}>
+        <TodoCounter completed={completedTodo} total={totalTodo} />
+        <TodoSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      </TodoHeader>
       <TodoList
         loading={loading}
         todoList={todoList}
