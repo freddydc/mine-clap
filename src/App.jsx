@@ -11,6 +11,20 @@ import { useTodo } from './hooks/useTodo'
 import { Message } from './components/Message'
 import { TodoHeader } from './components/TodoHeader'
 
+function Card({ title, text }) {
+  return <Message message={`${text} ${title}`} />
+}
+
+function withTitle(title) {
+  return function WrappedTitle(WrappedComponent) {
+    return function Title(props) {
+      return <WrappedComponent title={title} {...props} />
+    }
+  }
+}
+
+const CardWithTitle = withTitle('Clap')(Card)
+
 function App() {
   const {
     todoList,
@@ -28,6 +42,7 @@ function App() {
 
   return (
     <Layout>
+      <CardWithTitle text="Good" />
       <TodoHeader loading={loading}>
         <TodoCounter completed={completedTodo} total={totalTodo} />
         <TodoSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
