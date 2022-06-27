@@ -19,6 +19,7 @@ export function useTodo() {
   const {
     data: todoData,
     setData: setTodoList,
+    synchronizeData: synchronizeTodo,
     loading
   } = useLocalStorage('TODO_LIST', staticTodoList)
   const [searchTerm, setSearchTerm] = useState('')
@@ -74,6 +75,7 @@ export function useTodo() {
     loading,
     showModal,
     setShowModal,
-    addTodo
+    addTodo,
+    synchronizeTodo
   }
 }

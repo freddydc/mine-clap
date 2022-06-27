@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { TodoCounter } from './components/TodoCounter'
 import { TodoSearch } from './components/TodoSearch'
 import { TodoList } from './components/TodoList'
@@ -10,20 +11,36 @@ import { Layout } from './components/Layout'
 import { useTodo } from './hooks/useTodo'
 import { Message } from './components/Message'
 import { TodoHeader } from './components/TodoHeader'
+import { TodoNotifier } from './components/TodoNotifier'
 
-function Card({ title, text }) {
-  return <Message message={`${text} ${title}`} />
-}
+function withStorageListener(WrappedComponent) {
+  return function StorageListener({ synchronize }) {
+    const [changeStorage, setChangeStorage] = useState(false)
 
-function withTitle(title) {
-  return function WrappedTitle(WrappedComponent) {
-    return function Title(props) {
-      return <WrappedComponent title={title} {...props} />
+    addEventListener('storage', ({ key }) => {
+      if (key === 'TODO_LIST') {
+        setChangeStorage(true)
+      }
+    })
+
+    const synchronizeData = () => {
+      setChangeStorage(false)
+      synchronize()
     }
+
+    const handleCancel = () => setChangeStorage(false)
+
+    return (
+      <WrappedComponent
+        change={changeStorage}
+        synchronizeChange={synchronizeData}
+        cancel={handleCancel}
+      />
+    )
   }
 }
 
-const CardWithTitle = withTitle('Clap')(Card)
+const TodoNotifierWithStorageListener = withStorageListener(TodoNotifier)
 
 function App() {
   const {
@@ -37,12 +54,12 @@ function App() {
     completedTodo,
     totalTodo,
     setShowModal,
-    setSearchTerm
+    setSearchTerm,
+    synchronizeTodo
   } = useTodo()
 
   return (
     <Layout>
-      <CardWithTitle text="Good" />
       <TodoHeader loading={loading}>
         <TodoCounter completed={completedTodo} total={totalTodo} />
         <TodoSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -78,6 +95,7 @@ function App() {
         </Modal>
       )}
       <TodoCreator showModal={showModal} setShowModal={setShowModal} />
+      <TodoNotifierWithStorageListener synchronize={synchronizeTodo} />
     </Layout>
   )
 }
