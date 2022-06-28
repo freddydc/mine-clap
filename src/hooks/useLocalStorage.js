@@ -13,6 +13,7 @@ export function useLocalStorage(key, value) {
     setTimeout(() => {
       if (!parse || parse.length === 0) {
         localStorage.setItem(key, JSON.stringify(value))
+        setData(value)
         setLoading(false)
         setSynchronizedData(true)
       } else {
