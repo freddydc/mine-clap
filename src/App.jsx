@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { TodoCounter } from './components/TodoCounter'
 import { TodoSearch } from './components/TodoSearch'
 import { TodoList } from './components/TodoList'
@@ -12,35 +11,6 @@ import { useTodo } from './hooks/useTodo'
 import { Message } from './components/Message'
 import { TodoHeader } from './components/TodoHeader'
 import { TodoNotifier } from './components/TodoNotifier'
-
-function withStorageListener(WrappedComponent) {
-  return function StorageListener({ synchronize }) {
-    const [changeStorage, setChangeStorage] = useState(false)
-
-    addEventListener('storage', ({ key }) => {
-      if (key === 'TODO_LIST') {
-        setChangeStorage(true)
-      }
-    })
-
-    const synchronizeData = () => {
-      setChangeStorage(false)
-      synchronize()
-    }
-
-    const handleCancel = () => setChangeStorage(false)
-
-    return (
-      <WrappedComponent
-        change={changeStorage}
-        synchronizeChange={synchronizeData}
-        cancel={handleCancel}
-      />
-    )
-  }
-}
-
-const TodoNotifierWithStorageListener = withStorageListener(TodoNotifier)
 
 function App() {
   const {
@@ -95,7 +65,7 @@ function App() {
         </Modal>
       )}
       <TodoCreator showModal={showModal} setShowModal={setShowModal} />
-      <TodoNotifierWithStorageListener synchronize={synchronizeTodo} />
+      <TodoNotifier synchronize={synchronizeTodo} />
     </Layout>
   )
 }

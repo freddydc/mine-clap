@@ -1,6 +1,8 @@
+import { useStorageListener } from '../../hooks/useStorageListener'
 import styles from './TodoNotifier.module.css'
 
-export const TodoNotifier = ({ change, cancel, synchronizeChange }) => {
+export const TodoNotifier = ({ synchronize }) => {
+  const { change, cancel, synchronizeChange } = useStorageListener(synchronize)
   if (!change) {
     return null
   }
