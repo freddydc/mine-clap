@@ -65,17 +65,21 @@ export function useTodo() {
   }
 
   return {
-    totalTodo,
-    completedTodo,
-    searchTerm,
-    todoList,
-    setSearchTerm,
-    consumeTodo,
-    removeTodo,
-    loading,
-    showModal,
-    setShowModal,
-    addTodo,
-    synchronizeTodo
+    store: {
+      totalTodo,
+      completedTodo,
+      searchTerm,
+      todoList,
+      loading,
+      showModal
+    },
+    controller: {
+      setSearchTerm,
+      consumeTodo,
+      removeTodo,
+      setShowModal,
+      addTodo,
+      synchronizeTodo
+    }
   }
 }

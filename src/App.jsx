@@ -13,20 +13,19 @@ import { TodoHeader } from './components/TodoHeader'
 import { TodoNotifier } from './components/TodoNotifier'
 
 function App() {
+  const { store, controller } = useTodo()
+
+  const { totalTodo, completedTodo, searchTerm, todoList, loading, showModal } =
+    store
+
   const {
-    todoList,
+    setSearchTerm,
     consumeTodo,
     removeTodo,
-    loading,
-    showModal,
-    addTodo,
-    searchTerm,
-    completedTodo,
-    totalTodo,
     setShowModal,
-    setSearchTerm,
+    addTodo,
     synchronizeTodo
-  } = useTodo()
+  } = controller
 
   return (
     <Layout>
